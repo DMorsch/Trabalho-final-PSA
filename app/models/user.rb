@@ -8,5 +8,5 @@ class User < ApplicationRecord
     validates :nome, presence: true,
                      uniqueness: { case_sensitive: false },
                      length: { minimum: 3, maximum: 50 }
-    validates :coordenador, presence: true
+
 end
