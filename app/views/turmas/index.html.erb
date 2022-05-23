@@ -1,5 +1,12 @@
 <h1 class="text-center mt-4">Turmas disponíveis:</h1>
 
+<div class="row justify-content-md-center">
+<%= form_tag turmas_path, :method => "get" do%>
+  <%= label_tag(:search, "Pesquisar")%>
+  <%= text_field_tag :search, params[:search]%>
+  <%= submit_tag("Search", :nome => nil)%>
+<% end %>
+</div>
 <div class="apple_pagination">
 <div class="page_info">
     <%= page_entries_info @turmas %>
