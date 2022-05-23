@@ -1,10 +1,16 @@
 <h1 class="text-center mt-4">Turmas disponíveis:</h1>
 
 <div class="row justify-content-md-center">
-<%= form_tag turmas_path, :method => "get" do%>
-  <%= label_tag(:search, "Pesquisar")%>
-  <%= text_field_tag :search, params[:search]%>
-  <%= submit_tag("Search", :nome => nil)%>
+<%= form_with url: "/turmas", method: :get do |form| %>
+  <%= form.label(:search, "Pesquisar por: ")%>
+  <%= form.radio_button :tipo, "name", {checked: true} %>
+  <%= form.label :tipo_nome, "Nome" %>
+  <%= form.radio_button :tipo, "horario" %>
+  <%= form.label :tipo_horario, "Horário" %>
+  <%= form.radio_button :tipo, "codigo" %>
+  <%= form.label :tipo_codigo, "Código" %>
+  <%= form.text_field :search%>
+  <%= form.submit("Pesquisar", :nome => nil)%>
 <% end %>
 </div>
 <div class="apple_pagination">

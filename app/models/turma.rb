@@ -7,8 +7,10 @@ class Turma < ApplicationRecord
     validates :codigo, presence: true
     validates :horario, presence: true
 
-    def self.search(search)
-        return Turma.joins(:disciplina).where('disciplinas.nome LIKE ?', '%'+search+'%') if search
+    def self.search(search, tipo)
+        return Turma.joins(:disciplina).where('disciplinas.nome LIKE ?', '%'+search+'%') if search && tipo == "name"
+        return Turma.where('turmas.horario LIKE ?', '%'+search+'%') if search && tipo == "horario"
+        return Turma.where('turmas.codigo LIKE ?', '%'+search+'%') if search && tipo == "codigo"
         Turma.all
     end
 end
