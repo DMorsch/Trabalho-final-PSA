@@ -3,6 +3,6 @@ class HistoricosController < ApplicationController
     end
 
     def index
-        @historicos = Historico.paginate(page: params[:page], per_page: 8)
+        @historicos = Historico.where("user_id = ?", current_user.id).paginate(page: params[:page], per_page: 5)
     end
 end

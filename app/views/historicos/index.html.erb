@@ -17,7 +17,7 @@
           <div class="card-body">
             <h5 class="card-title" ><%= historico.disciplina.nome %></h5>
             <p class="card-text"><%= historico.nota %></p>
-            <%= historico.aprovado  %>
+            <p class="card-text"><%= historico.aprovado ? "Aprovado" : "Reprovado" %></p>
           </div>
         </div>
       </div>
