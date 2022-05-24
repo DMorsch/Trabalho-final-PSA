@@ -10,7 +10,7 @@ class Turma < ApplicationRecord
     def self.search(search, tipo)
         return Turma.joins(:disciplina).where('disciplinas.nome LIKE ?', '%'+search+'%') if search && tipo == "name"
         return Turma.where('turmas.horario LIKE ?', '%'+search+'%') if search && tipo == "horario"
-        return Turma.where('turmas.codigo LIKE ?', '%'+search+'%') if search && tipo == "codigo"
+        return Turma.joins(:disciplina).where('disciplinas.codigo LIKE ?', '%'+search+'%') if search && tipo == "codigo"
         Turma.all
     end
 end
