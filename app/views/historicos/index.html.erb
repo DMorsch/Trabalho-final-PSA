@@ -6,24 +6,27 @@
 </div>
     <%= will_paginate @historicos, :container => false %>
 </div>
-<div class="container">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Nota</th>
+      <th scope="col">Aprovado</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @historicos.each do |historico| %>
     <div class="row justify-content-md-center">
-      <div class="col-8 mt-4">
-        <div class="card text-center shadow mb-5 bg-white rounded">
-          <div class="card-header font-italic">
-             <%= historico.user.nome %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" ><%= historico.disciplina.nome %></h5>
-            <p class="card-text"><%= historico.nota %></p>
-            <p class="card-text"><%= historico.aprovado ? "Aprovado" : "Reprovado" %></p>
-          </div>
-        </div>
-      </div>
+      <tr>
+        <td><%= historico.disciplina.nome %></td>
+        <td><%= historico.nota %></td>
+        <td><%= historico.aprovado ? "Sim" : "Não" %></td>
+      </tr>
     </div>
   <% end %>
-</div>
+  </tbody>
+</table>
+
 <div class="apple_pagination">
     <%= will_paginate @historicos, :container => false %>
 </div>
