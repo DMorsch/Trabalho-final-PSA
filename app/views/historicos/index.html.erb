@@ -10,15 +10,17 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Nome</th>
+      <th scope="col">Semestre</th>
       <th scope="col">Nota</th>
       <th scope="col">Aprovado</th>
     </tr>
   </thead>
   <tbody>
-  <% @historicos.each do |historico| %>
+  <% @historicos.order(:semestre).each do |historico| %>
     <div class="row justify-content-md-center">
       <tr>
         <td><%= historico.disciplina.nome %></td>
+        <td><%= historico.semestre %></td>
         <td><%= historico.nota %></td>
         <td><%= historico.aprovado ? "Sim" : "Não" %></td>
       </tr>
