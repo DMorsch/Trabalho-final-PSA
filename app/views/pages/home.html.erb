@@ -1,9 +1,11 @@
-<div class="container" id="home-container">
-  <div class="jumbotron text-center ">
-    <h1 class="display-4"> Sistema de Matrículas</h1>
-
-
-  </div>
+<div class="jumbotron text-center">
+  <h1 class="display-4">Sistema de Matrículas PUCRS</h1>
+  <p class="lead">Simulação do sistema de matrículas da PUCRS para os alunos de Sistemas de Informação</p>
+  <hr class="my-4">
+  <% if !logged_in? %>
+    <p>Realize login para desfrutar das funcionalidades do sistema.</p>
+    <p class="lead">
+      <%= link_to "Login", login_path, class: "btn btn-primary btn-lg" %>
+    </p>
+  <% end %>
 </div>
-
-

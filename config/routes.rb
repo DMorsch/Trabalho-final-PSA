@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   delete 'logout', to: "sessions#destroy"
   resources :historicos, except: [:new, :destroy, :edit]
   resources :turmas, except: [:new, :destroy, :edit]
+  resources :turma_users
 end

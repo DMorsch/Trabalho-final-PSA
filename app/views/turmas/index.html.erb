@@ -20,7 +20,7 @@
     <%= will_paginate @turmas, :container => false %>
 </div>
 <div class="container">
-  <% @turmas.each do |turma| %>
+  <% @turmas.order(:nivel).each do |turma| %>
     <div class="row justify-content-md-center">
       <div class="col-8 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
@@ -29,8 +29,13 @@
           </div>
           <div class="card-body">
             <h5 class="card-title" ><%= turma.horario %></h5>
-            <p class="card-text">Vagas: <%= turma.vagas %></p>
-            <%= turma.disciplina.codigo  %>
+            <p class="card-text">Vagas: <%= turma.vagas - turma.turma_users_count %></p>
+            <p> <%= turma.disciplina.codigo  %> </p>
+            <% if turma.turma_users_count < turma.vagas %>
+              <div>
+                <%= link_to "Matricular", turma_users_path(user: current_user, turma: turma), class: "btn btn-success", method: :post %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
