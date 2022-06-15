@@ -25,13 +25,13 @@
       <div class="col-8 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
-             <%= turma.disciplina.nome %>
+            <%= turma.disciplina.nome %>
           </div>
           <div class="card-body">
             <h5 class="card-title" ><%= turma.horario %></h5>
             <p class="card-text">Vagas: <%= turma.vagas - turma.turma_users_count %></p>
             <p> <%= turma.disciplina.codigo  %> </p>
-            <% if turma.turma_users_count < turma.vagas %>
+            <% if turma.turma_users_count < turma.vagas && current_user.pode_matricular?(turma.id, current_user.id, turma.disciplina_id) && !current_user.ja_cursou?(turma.disciplina_id, current_user.id)  %>
               <div>
                 <%= link_to "Matricular", turma_users_path(user: current_user, turma: turma), class: "btn btn-success", method: :post %>
               </div>
