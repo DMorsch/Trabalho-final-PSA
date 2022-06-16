@@ -51,7 +51,7 @@ class User < ApplicationRecord
             while x >= 1
                 retorno = true if horarios_turma[x-1] == periodos_matriculados[0]
                 retorno = true if horarios_turma[x-1] == periodos_matriculados[1]
-                retorno = true if horarios_turma[x-1] == periodos_matriculados[2]
+                retorno = true if (horarios_turma[x-1] == periodos_matriculados[2]) && !periodos_matriculados[2].blank?
                 x = x - 1
             end
         end
