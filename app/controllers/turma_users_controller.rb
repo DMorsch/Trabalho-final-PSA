@@ -1,8 +1,12 @@
 class TurmaUsersController < ApplicationController
     def create
         turma = Turma.find(params[:turma])
-        @turma_user = TurmaUser.create(user: current_user, turma: turma)
-        flash[:notice] = "Matrícula realizada com sucesso!"
+        if turma.vagas > turma.turma_users_count
+            @turma_user = TurmaUser.create(user: current_user, turma: turma)
+            flash[:notice] = "Matrícula realizada com sucesso!"
+        else
+            flash[:warning] = "Vagas esgotadas!"
+        end
         redirect_to turmas_path
     end
 

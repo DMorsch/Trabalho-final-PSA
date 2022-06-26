@@ -7,4 +7,10 @@ class Disciplina < ApplicationRecord
     validates :nome, presence: true
     validates :codigo, presence: true
     validates :creditos, presence: true
+
+    def self.search(search, tipo)
+        return Disciplina.where('disciplinas.nome LIKE ?', '%'+search+'%') if search && tipo == "name"
+        return Disciplina.where('disciplinas.codigo LIKE ?', '%'+search+'%') if search && tipo == "codigo"
+        Disciplina.all
+    end
 end

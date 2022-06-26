@@ -10,7 +10,20 @@ class User < ApplicationRecord
                      length: { minimum: 3, maximum: 50 }
 
     def pode_matricular?(turma_id, user_id, disciplina_id)
-        !ja_matriculado?(turma_id, user_id) && cumpre_requisito?(user_id, disciplina_id) && !cursando_mesma_disciplina?(disciplina_id) && !cursando_com_mesmo_horario?(turma_id, user_id)
+        !ja_matriculado?(turma_id, user_id) && cumpre_requisito?(user_id, disciplina_id) && !cursando_mesma_disciplina?(disciplina_id, user_id) && !cursando_com_mesmo_horario?(turma_id, user_id)
+    end
+
+    def coeficiente
+        creditos = 0
+        coef = 0
+        carga = 0
+        historicos.each do |hist|
+            creditos += hist.disciplina.creditos
+            carga += (creditos * 15)
+            coef += hist.nota * (creditos * 15)
+        end
+        return 0 if carga == 0
+        (coef/carga)
     end
 
     def ja_cursou?(disciplina_id, user_id)
@@ -36,8 +49,8 @@ class User < ApplicationRecord
         retorno
     end
 
-    def cursando_mesma_disciplina?(disciplina_id)
-        Turma.where(disciplina_id: disciplina_id).joins(:turma_users).exists?
+    def cursando_mesma_disciplina?(disciplina_id, user_id)
+        Turma.where(disciplina_id: disciplina_id).joins(:turma_users, :users).where("users.id = ?", user_id).exists?
     end
 
     def cursando_com_mesmo_horario?(turm_id, usr_id)
@@ -45,8 +58,10 @@ class User < ApplicationRecord
         turmas_matriculadas = TurmaUser.where(user_id: usr_id)
         turma = Turma.find(turm_id)
         horarios_turma = [turma.horario.slice(0..2), turma.horario.slice(3..5), turma.horario.slice(6..8)]
+        horarios_turma[1] = horarios_turma[0].slice(0) + "NP"if horarios_turma[1] == "NP"
         turmas_matriculadas.each do |tm|
             periodos_matriculados = [tm.turma.horario.slice(0..2), tm.turma.horario.slice(3..5), tm.turma.horario.slice(6..8)]
+            periodos_matriculados[1] = periodos_matriculados[0].slice(0) + "NP" if periodos_matriculados[1] == "NP"
             x = 3
             while x >= 1
                 retorno = true if horarios_turma[x-1] == periodos_matriculados[0]

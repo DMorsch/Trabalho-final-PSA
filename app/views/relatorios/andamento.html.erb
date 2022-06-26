@@ -1,0 +1,5 @@
+<h1 class="text-center mt-4">Andamento da matrícula</h1>
+
+<h4 class="text-center mt-4">Quantidade de alunos no curso: <%= @qtd %> </h4>
+<h4 class="text-center mt-4">Percentual de alunos matriculados: <%= (@qtd_matriculados*100)/@qtd %>% </h4>
+<h4 class="text-center mt-4">Número médio de créditos por aluno: <%=  @creditos_matriculados/@qtd_matriculados %> </h4>

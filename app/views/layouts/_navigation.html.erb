@@ -7,14 +7,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if logged_in? %>
-        <li class="nav-item">
-            <%= link_to "Histórico", historicos_path, class: "nav-link"%>
-        </li>
+        <% if !current_user.coordenador %>
+          <li class="nav-item">
+              <%= link_to "Histórico", historicos_path, class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+              <%= link_to "Minha matrícula", turma_users_path, class: "nav-link"%>
+          </li>
+        <% else %>
+          <li class="nav-item">
+              <%= link_to "Relatorios", relatorios_path, class: "nav-link"%>
+          </li>
+        <% end %>
         <li class="nav-item">
             <%= link_to "Turmas", turmas_path, class: "nav-link"%>
-        </li>
-        <li class="nav-item">
-            <%= link_to "Minha matrícula", turma_users_path, class: "nav-link"%>
         </li>
         <li class="nav-item">
           <%= link_to "Log out", logout_path, class: "nav-link", method: :delete %>

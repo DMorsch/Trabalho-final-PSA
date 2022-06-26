@@ -2,8 +2,20 @@ class PagesController < ApplicationController
     def home
     end
 
+    def matriculados
+        turmas = Turma.where(disciplina_id: params[:disciplina])
+        @alunos = Array.new
+        @nome = params[:nome]
+        turmas.each do |turma|
+            turma.users.each do |user|
+                @alunos.push(user.nome)
+            end
+        end
+    end
+
     def grade
-        turma_users = TurmaUser.where(user_id: current_user.id)
+        usr_id = params[:id].blank? ? current_user.id : params[:id]
+        turma_users = TurmaUser.where(user_id: usr_id)
         @horarios = ["", "", "", "", "", "", "", "", "", ""]
         turma_users.each do |tusr|
             periodos = [tusr.turma.horario.slice(0..2), tusr.turma.horario.slice(3..5), tusr.turma.horario.slice(6..8)]

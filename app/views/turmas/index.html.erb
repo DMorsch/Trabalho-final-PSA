@@ -31,9 +31,9 @@
             <h5 class="card-title" ><%= turma.horario %></h5>
             <p class="card-text">Vagas: <%= turma.vagas - turma.turma_users_count %></p>
             <p> <%= turma.disciplina.codigo  %> </p>
-            <% if turma.turma_users_count < turma.vagas && current_user.pode_matricular?(turma.id, current_user.id, turma.disciplina_id) && !current_user.ja_cursou?(turma.disciplina_id, current_user.id)  %>
+            <% if turma.turma_users_count < turma.vagas && !current_user.coordenador && current_user.pode_matricular?(turma.id, current_user.id, turma.disciplina_id) && !current_user.ja_cursou?(turma.disciplina_id, current_user.id)  %>
               <div>
-                <%= link_to "Matricular", turma_users_path(user: current_user, turma: turma), class: "btn btn-success", method: :post %>
+                <%= link_to "Solicitar matricula", turma_users_path(user: current_user, turma: turma), class: "btn btn-success", method: :post %>
               </div>
             <% end %>
           </div>
