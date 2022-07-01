@@ -12,7 +12,8 @@ class RelatoriosController < ApplicationController
     end
 
     def alunos
-        @alunos = User.where("users.coordenador = ? AND users.nome LIKE ?", false, '%'+params[:search]+'%').paginate(page: params[:page], per_page: 7)
+        nome = params[:search] ? params[:search] : ""
+        @alunos = User.where("users.coordenador = ? AND users.nome LIKE ?", false, '%'+nome+'%').paginate(page: params[:page], per_page: 7)
         @creditos_cursados = Hash.new
         @coeficiente_rendimento = Hash.new
         User.where("users.coordenador = ?", false).each do |aluno|
