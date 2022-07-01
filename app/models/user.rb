@@ -27,7 +27,7 @@ class User < ApplicationRecord
     end
 
     def ja_cursou?(disciplina_id, user_id)
-        disc = Historico.find_by(disciplina_id: disciplina_id, user_id: user_id)
+        disc = Historico.find_by(disciplina_id: disciplina_id, user_id: user_id, aprovado: true)
         return true if disc
         return false
     end
