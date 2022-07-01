@@ -3,7 +3,7 @@ class RelatoriosController < ApplicationController
     end
 
     def andamento
-        @qtd = User.count - 1
+        @qtd = User.count - User.where(coordenador: true).count
         @qtd_matriculados = TurmaUser.select('distinct(user_id)').count
         @creditos_matriculados = 0
         TurmaUser.select('distinct(user_id), turma_id').each do |tusr|
@@ -12,7 +12,7 @@ class RelatoriosController < ApplicationController
     end
 
     def alunos
-        @alunos = User.where("users.coordenador = ?", false).paginate(page: params[:page], per_page: 7)
+        @alunos = User.where("users.coordenador = ? AND users.nome LIKE ?", false, '%'+params[:search]+'%').paginate(page: params[:page], per_page: 7)
         @creditos_cursados = Hash.new
         @coeficiente_rendimento = Hash.new
         User.where("users.coordenador = ?", false).each do |aluno|
