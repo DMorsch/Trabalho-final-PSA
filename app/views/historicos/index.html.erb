@@ -7,20 +7,23 @@
 </div>
     <%= will_paginate @historicos, :container => false %>
 </div>
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Nome</th>
+      <th scope="col">Nível</th>
       <th scope="col">Semestre</th>
       <th scope="col">Nota</th>
       <th scope="col">Aprovado</th>
     </tr>
   </thead>
   <tbody>
-  <% @historicos.order(:semestre).each do |historico| %>
+  <% @historicos.order(:nivel, :semestre).each do |historico| %>
     <div class="row justify-content-md-center">
-      <tr>
+      <tr class="table-secondary">
         <td><%= historico.disciplina.nome %></td>
+        <td><%= historico.disciplina.nivel %></td>
         <td><%= historico.semestre %></td>
         <td><%= historico.nota %></td>
         <td><%= historico.aprovado ? "Sim" : "Não" %></td>
@@ -29,6 +32,7 @@
   <% end %>
   </tbody>
 </table>
+
 
 <div class="apple_pagination">
     <%= will_paginate @historicos, :container => false %>

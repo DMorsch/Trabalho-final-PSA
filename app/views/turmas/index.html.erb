@@ -20,27 +20,32 @@
     <%= will_paginate @turmas, :container => false %>
 </div>
 <div class="container">
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark text-center">
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Horário</th>
+        <th scope="col">Vagas</th>
+        <th scope="col">Código</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
   <% @turmas.order(:nivel).each do |turma| %>
-    <div class="row justify-content-md-center">
-      <div class="col-8 mt-4">
-        <div class="card text-center shadow mb-5 bg-white rounded">
-          <div class="card-header font-italic">
-            <%= turma.disciplina.nome %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" ><%= turma.horario %></h5>
-            <p class="card-text">Vagas: <%= turma.vagas - turma.turma_users_count %></p>
-            <p> <%= turma.disciplina.codigo  %> </p>
+    <div class=" justify-content-md-center">
+      <tr class="table-secondary text-center">
+          <td><%= turma.disciplina.nome %></td>
+          <td><%= turma.horario %></td>
+          <td><%= turma.vagas - turma.turma_users_count %></td>
+          <td><%= turma.disciplina.codigo  %></td>
+          <td>
             <% if turma.turma_users_count < turma.vagas && !current_user.coordenador && current_user.pode_matricular?(turma.id, current_user.id, turma.disciplina_id) && !current_user.ja_cursou?(turma.disciplina_id, current_user.id)  %>
-              <div>
-                <%= link_to "Solicitar matricula", turma_users_path(user: current_user, turma: turma), class: "btn btn-success", method: :post %>
-              </div>
+              <%= link_to "Solicitar matricula", turma_users_path(user: current_user, turma: turma), class: "btn btn-success", method: :post %>
             <% end %>
-          </div>
-        </div>
-      </div>
+          </td>
+        </tr>
     </div>
   <% end %>
+  </table>
 </div>
 <div class="apple_pagination">
     <%= will_paginate @turmas, :container => false %>

@@ -1,26 +1,30 @@
 <h1 class="text-center mt-4">Turmas matriculadas:</h1>
+
+<div class="container">
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark text-center">
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Horário</th>
+        <th scope="col">Vagas</th>
+        <th scope="col">Código</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    <% @turma_users.each do |tusr| %>
+      <div class="row justify-content-md-center">
+        <tr class="table-secondary text-center">
+          <td><%= tusr.turma.disciplina.nome %></td>
+          <td><%= tusr.turma.horario %></td>
+          <td><%= tusr.turma.vagas - tusr.turma.turma_users_count %></td>
+          <td><%= tusr.turma.disciplina.codigo  %></td>
+          <td><%= link_to "Cancelar matrícula", turma_user_path(tusr), class: "btn btn-danger", method: :delete, data: {confirm: "Tem certeza?"} %></td>
+        </tr>
+      </div>
+    <% end %>
+  </table>
+</div>
+
 <div class="row justify-content-md-center">
     <%= link_to "Gerar grade de horários", grade_path, class: "btn btn-info btn-grade"%>
-</div>
-<div class="container">
-  <% @turma_users.each do |tusr| %>
-    <div class="row justify-content-md-center">
-      <div class="col-8 mt-4">
-        <div class="card text-center shadow mb-5 bg-white rounded">
-          <div class="card-header font-italic">
-            <%= tusr.turma.disciplina.nome %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" ><%= tusr.turma.horario %></h5>
-            <p class="card-text">Vagas: <%= tusr.turma.vagas - tusr.turma.turma_users_count %></p>
-            <p> <%= tusr.turma.disciplina.codigo  %> </p>
-            <div>
-                <%= link_to "Cancelar matrícula", turma_user_path(tusr), class: "btn btn-danger", method: :delete, data: {confirm: "Tem certeza?"} %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
 </div>
