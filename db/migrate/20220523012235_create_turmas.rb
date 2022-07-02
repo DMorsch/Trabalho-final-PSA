@@ -4,7 +4,6 @@ class CreateTurmas < ActiveRecord::Migration[6.1]
       t.integer :disciplina_id
       t.integer :vagas
       t.string :horario
-      t.integer :codigo
       t.timestamps
     end
   end

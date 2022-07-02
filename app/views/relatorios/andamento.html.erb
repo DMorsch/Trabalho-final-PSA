@@ -4,9 +4,9 @@
         <td>Quantidade de alunos no curso: <%= @qtd %></td>
     </tr>
     <tr>
-        <td>Percentual de alunos matriculados: <%= (@qtd_matriculados*100)/@qtd %>% </td>
+        <td>Percentual de alunos matriculados: <%= (@qtd_matriculados*100)/(@qtd == 0 ? 1 : @qtd) %>% </td>
     </tr>
     <tr>
-        <td>Número médio de créditos por aluno: <%=  @creditos_matriculados/@qtd_matriculados %></td>
+        <td>Número médio de créditos por aluno: <%=  @creditos_matriculados/(@qtd_matriculados == 0 ? 1 : @qtd_matriculados) %></td>
     </tr>
 </table>

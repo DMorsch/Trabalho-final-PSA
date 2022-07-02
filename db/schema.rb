@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_225633) do
+ActiveRecord::Schema.define(version: 2022_07_02_191721) do
 
   create_table "disciplinas", force: :cascade do |t|
     t.string "nome"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2022_06_13_225633) do
     t.string "horario"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "codigo"
     t.integer "turma_users_count"
   end
 

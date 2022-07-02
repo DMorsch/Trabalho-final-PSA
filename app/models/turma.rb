@@ -4,7 +4,6 @@ class Turma < ApplicationRecord
     has_many :users, through: :turma_users
 
     validates :vagas, presence: true
-    validates :codigo, presence: true
     validates :horario, presence: true
 
     def self.search(search, tipo)

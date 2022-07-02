@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         flash[:notice] = "Bem-vindo, #{user.nome}!"
         redirect_to root_path
       else
-        flash[:notice] = "Aconteceu algo inesperado!"
+        flash[:notice] = "Usuário ou senha incorreta!"
         redirect_to root_path
       end
     end
