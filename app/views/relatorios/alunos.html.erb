@@ -30,7 +30,7 @@
         <td><%= aluno.nome %></td>
         <td><%= @creditos_cursados[aluno.nome] %></td>
         <td><%= @coeficiente_rendimento[aluno.nome] %></td>
-        <td><%= link_to "Visualizar grade do aluno", relatorios_grade_path(:id => aluno.id), class: "btn btn-info" %></td>
+        <td><%= link_to "Visualizar grade do aluno", relatorios_grade_path(:id => aluno.id), class: "btn btn-info btn-sm" %></td>
       </tr>
     </div>
   <% end %>
