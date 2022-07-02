@@ -5,7 +5,7 @@ class TurmaUsersController < ApplicationController
             @turma_user = TurmaUser.create(user: current_user, turma: turma)
             flash[:notice] = "Matrícula realizada com sucesso!"
         else
-            flash[:warning] = "Vagas esgotadas!"
+            flash[:alert] = "Vagas esgotadas!"
         end
         redirect_to turmas_path
     end
