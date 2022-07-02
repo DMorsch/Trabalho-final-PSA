@@ -30,7 +30,7 @@
         <th scope="col">#</th>
       </tr>
     </thead>
-  <% @turmas.order(:nivel).each do |turma| %>
+  <% @turmas.order(:id).each do |turma| %>
     <div class=" justify-content-md-center">
       <tr class="table-secondary text-center">
           <td><%= turma.disciplina.nome %></td>
