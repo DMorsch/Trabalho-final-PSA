@@ -1,25 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para rodar o projeto, é necessário ter instalado:
 
-Things you may want to cover:
+* NodeJS
 
-* Ruby version
+* Yarn
 
-* System dependencies
+* RVM (Ruby Version Manager)
 
-* Configuration
+* Ruby
 
-* Database creation
+* Rails (versão 6 ou superior)
 
-* Database initialization
+* Execute o comando "rails db:migrate" para inicializar o banco de dados
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Execute o projeto com o comando: rails server
 
 * ...
 # Trabalho-final-PSA
