@@ -38,7 +38,7 @@
           <td><%= turma.vagas - turma.turma_users_count %></td>
           <td><%= turma.disciplina.codigo  %></td>
           <td>
-            <% if turma.turma_users_count < turma.vagas && !current_user.coordenador && current_user.pode_matricular?(turma.id, current_user.id, turma.disciplina_id) && !current_user.ja_cursou?(turma.disciplina_id, current_user.id)  %>
+            <% if logged_in? && turma.turma_users_count < turma.vagas && !current_user.coordenador && current_user.pode_matricular?(turma.id, current_user.id, turma.disciplina_id) && !current_user.ja_cursou?(turma.disciplina_id, current_user.id)  %>
               <%= link_to "Solicitar matricula", turma_users_path(user: current_user, turma: turma), class: "btn btn-success", method: :post %>
             <% end %>
           </td>
