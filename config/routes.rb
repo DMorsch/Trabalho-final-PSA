@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'login', to: "sessions#new"
   get "grade", to: "pages#grade"
   get "matriculados", to: "pages#matriculados"
-  get "relatorios", to: "relatorios#index"
   get "relatorios/andamento", to: "relatorios#andamento"
   get "relatorios/alunos", to: "relatorios#alunos"
   get "relatorios/grade", to: "relatorios#grade"

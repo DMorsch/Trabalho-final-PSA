@@ -15,8 +15,15 @@
               <%= link_to "Minha matrícula", turma_users_path, class: "nav-link"%>
           </li>
         <% else %>
-          <li class="nav-item">
-              <%= link_to "Relatorios", relatorios_path, class: "nav-link"%>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Relatórios
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Andamento da matrícula", relatorios_andamento_path, class: "dropdown-item" %>
+              <%= link_to "Relatório de disciplinas", disciplinas_path, class: "dropdown-item" %>
+              <%= link_to "Relatório de alunos", relatorios_alunos_path, class: "dropdown-item" %>
+            </div>
           </li>
         <% end %>
         <li class="nav-item">

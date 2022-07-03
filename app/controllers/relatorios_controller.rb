@@ -1,6 +1,5 @@
 class RelatoriosController < ApplicationController
-    def index
-    end
+    before_action :require_user
 
     def andamento
         @qtd = User.count - User.where(coordenador: true).count
