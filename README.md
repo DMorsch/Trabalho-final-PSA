@@ -14,7 +14,9 @@ Para rodar o projeto, é necessário ter instalado:
 
 * Execute o comando "rails db:migrate" para inicializar o banco de dados
 
-* Execute o projeto com o comando: rails server
+* Execute o comando "rails db:seed" para popular o banco de dados
+
+* Execute o projeto com o comando: "rails server"
 
 * ...
 # Trabalho-final-PSA
